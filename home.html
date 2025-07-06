@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Dashboard - QuickLearn</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: linear-gradient(-45deg, #74ebd5, #acb6e5, #74ebd5, #acb6e5);
+      --text-color: #fff;
+      --card-bg: rgba(255, 255, 255, 0.1);
+      --navbar-bg: rgba(0, 0, 0, 0.6);
+      --footer-bg: rgba(0, 0, 0, 0.7);
+    }
+
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --navbar-bg: rgba(30, 30, 30, 0.9);
+      --footer-bg: rgba(20, 20, 20, 0.9);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-color);
+      background-size: 400% 400%;
+      animation: bgFlow 15s ease infinite;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      color: var(--text-color);
+    }
+
+    @keyframes bgFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    nav.navbar {
+      background: var(--navbar-bg);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text-color);
+    }
+
+    .logo img {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links li a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+      color: #ffd700;
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .welcome-box {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(20px);
+      padding: 30px 25px;
+      border-radius: 16px;
+      text-align: center;
+      max-width: 700px;
+      width: 100%;
+      margin-bottom: 30px;
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .welcome-box h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .welcome-box p {
+      font-size: 18px;
+      color: var(--text-color);
+    }
+
+    .search-bar {
+      margin: 20px auto;
+      max-width: 500px;
+      width: 100%;
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      outline: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .card-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      padding: 20px 25px;
+      border-radius: 16px;
+      width: 250px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+    }
+
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 16px;
+    }
+
+    .slideshow-container {
+      width: 100%;
+      max-width: 850px;
+      overflow: hidden;
+      position: relative;
+      border-radius: 20px;
+      margin-top: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      height: 400px;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    footer.footer {
+      background: var(--footer-bg);
+      color: var(--text-color);
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 14px;
+      margin-top: auto;
+      backdrop-filter: blur(10px);
+    }
+
+    footer strong {
+      color: #ffd700;
+    }
+
+    /* Dark mode toggle */
+    .toggle-btn {
+      cursor: pointer;
+      background: #333;
+      border: none;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      margin-left: 20px;
+      transition: background 0.3s ease;
+    }
+
+    .toggle-btn:hover {
+      background: #555;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 10px;
+      }
+
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .slide {
+        height: 250px;
+      }
+
+      .welcome-box h2 {
+        font-size: 24px;
+      }
+
+      .card {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+  <div class="logo">
+    <img src="img/logo.png" alt="Logo">
+    <span>QuickLearn</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="home.html">Dashboard</a></li>
+    <li><a href="courses.php">Courses</a></li>
+    <li><a href="profile.php">Profile</a></li>
+    <li><a href="index.html" onclick="logout()">Logout</a></li>
+  </ul>
+  <button class="toggle-btn" onclick="toggleTheme()">🌙 </button>
+</nav>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="welcome-box">
+    <h2>🎓 Welcome to QuickLearn</h2>
+    <p>You are successfully logged into your student dashboard.</p>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="🔍 Search your courses or topics...">
+  </div>
+
+  <div class="card-section" id="featureCards">
+    <div class="card">
+      <h3>📚 6 Courses</h3>
+      <p>You're enrolled in 6 active courses.</p>
+    </div>
+    <div class="card">
+      <h3>✅ 18 Lessons</h3>
+      <p>Lessons you've completed so far.</p>
+    </div>
+    <div class="card">
+      <h3>🎯 Goals</h3>
+      <p>Complete 3 more to reach your goal!</p>
+    </div>
+  </div>
+
+  <div class="slideshow-container">
+    <div class="slide"><img src="img/slide1.jpg" alt="Slide 1"></div>
+    <div class="slide"><img src="img/slide2.jpg" alt="Slide 2"></div>
+    <div class="slide"><img src="img/slide3.jpg" alt="Slide 3"></div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>&copy; 2025 <strong>QuickLearn</strong>. All rights reserved. @Ajay Kore | Designed with ❤️ by Salsha Tech</p>
+</footer>
+
+<!-- Scripts -->
+<script>
+  function logout() {
+    alert("You have been logged out.");
+  }
+
+  let currentIndex = 0;
+  const slides = document.querySelectorAll(".slide");
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.display = i === index ? "block" : "none";
+    });
+  }
+
+  function startSlideshow() {
+    showSlide(currentIndex);
+    currentIndex = (currentIndex + 1) % slides.length;
+    setTimeout(startSlideshow, 4000);
+  }
+
+  document.getElementById("searchInput").addEventListener("input", function () {
+    const query = this.value.toLowerCase();
+    document.querySelectorAll(".card").forEach(card => {
+      card.style.display = card.textContent.toLowerCase().includes(query) ? "block" : "none";
+    });
+  });
+
+  function toggleTheme() {
+    document.body.classList.toggle("dark");
+    localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+  }
+
+  // Load theme from localStorage
+  window.onload = function () {
+    if (localStorage.getItem("theme") === "dark") {
+      document.body.classList.add("dark");
+    }
+    startSlideshow();
+  };
+</script>
+</body>
+</html>

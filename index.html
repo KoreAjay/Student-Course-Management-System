@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Portal Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #121212;
+    }
+
+    .login-container {
+      display: flex;
+      width: 100%;
+      max-width: 1000px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      background-color: #1f1f1f;
+    }
+
+    .left-panel {
+      background-color: #1f1f1f;
+      color: white;
+      padding: 60px 40px;
+      width: 50%;
+    }
+
+    .left-panel h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .left-panel p {
+      font-size: 14px;
+      margin-bottom: 30px;
+      color: #ccc;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-bottom: 1px solid #444;
+      background: transparent;
+      color: white;
+      font-size: 14px;
+    }
+
+    .form-group input::placeholder {
+      color: #888;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-bottom-color: #bb86fc;
+    }
+
+    .left-panel a {
+      font-size: 13px;
+      color: #bb86fc;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    .left-panel button {
+      width: 100%;
+      padding: 12px;
+      background-color: #bb86fc;
+      border: none;
+      color: #121212;
+      font-weight: 600;
+      font-size: 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-bottom: 10px;
+    }
+
+    .left-panel button:hover {
+      background-color: #9a5cff;
+    }
+
+    .signup {
+      margin-top: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .signup p {
+      font-size: 13px;
+      color: #888;
+    }
+
+    .signup a {
+      padding: 6px 12px;
+      background-color: #2e2e2e;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .admin-login {
+      margin-top: 10px;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .admin-login a {
+      color: #f2a2ff;
+      text-decoration: underline;
+    }
+
+    .right-panel {
+      background-color: #a259ff;
+      width: 50%;
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    .right-panel h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .right-panel h3 {
+      font-size: 16px;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+
+    .right-panel img {
+      width: 100%;
+      max-width: 350px;
+      height: auto;
+    }
+
+    @media (max-width: 768px) {
+      .login-container {
+        flex-direction: column;
+      }
+
+      .left-panel, .right-panel {
+        width: 100%;
+        padding: 40px 25px;
+      }
+
+      .right-panel {
+        order: -1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="left-panel">
+      <h2>Login</h2>
+      <p>Enter your student portal credentials</p>
+      <form action="login.php" method="post">
+        <div class="form-group">
+          <input type="text" name="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+          <input type="password" name="password" placeholder="Password" required>
+        </div>
+        <a href="reset.html">Forgot Password?</a>
+        <button type="submit">Login</button>
+      </form>
+      <div class="signup">
+        <p>Don't have an account?</p>
+        <a href="register.html">Sign up</a>
+      </div>
+      <div class="admin-login">
+        <a href="admin_login.php">Admin Login</a>
+      </div>
+    </div>
+    <div class="right-panel">
+      <h1>Welcome to<br>Student Portal</h1>
+      <h3>Login to access your profile, courses and more</h3>
+      <img src="img/login2.png" alt="Student Portal Illustration">
+    </div>
+  </div>
+</body>
+</html>

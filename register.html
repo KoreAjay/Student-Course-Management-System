@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Registration</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #121212;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .register-container {
+      display: flex;
+      max-width: 1000px;
+      width: 100%;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .form-panel {
+      width: 50%;
+      padding: 40px 30px;
+      background-color: #ffffff;
+    }
+
+    .form-panel h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+      font-weight: 600;
+      font-size: 28px;
+    }
+
+    form input {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 15px;
+      transition: border-color 0.3s ease;
+    }
+
+    form input:focus {
+      border-color: #7b2ff7;
+      outline: none;
+    }
+
+    .show-password {
+      font-size: 13px;
+      color: #555;
+      margin-top: -5px;
+    }
+
+    .show-password input {
+      margin-right: 6px;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      background: #7b2ff7;
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 10px;
+    }
+
+    button[type="submit"]:hover {
+      background: #5f20c3;
+    }
+
+    .login-btn-wrapper {
+      text-align: center;
+      margin-top: 18px;
+    }
+
+    .login-btn-wrapper a {
+      display: inline-block;
+      padding: 10px 22px;
+      background-color: #f107a3;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .login-btn-wrapper a:hover {
+      background-color: #c20589;
+    }
+
+    .image-panel {
+      background: linear-gradient(to bottom right, #7b2ff7, #f107a3);
+      color: #fff;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 30px;
+      text-align: center;
+    }
+
+    .image-panel h1 {
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .image-panel p {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .image-panel img {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .register-container {
+        flex-direction: column;
+      }
+
+      .form-panel, .image-panel {
+        width: 100%;
+        padding: 30px 20px;
+      }
+
+      .image-panel {
+        order: -1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="register-container">
+    <div class="form-panel">
+      <h2>Student Registration</h2>
+      <form action="insert.php" method="post" enctype="multipart/form-data">
+        <input type="text" name="fullname" placeholder="Full Name" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="text" name="roll_no" placeholder="Roll Number" required />
+        <input type="text" name="course" placeholder="Course" required />
+        <input type="text" name="yearsemester" placeholder="Year & Semester" required />
+        <input type="password" name="password" id="reg-password" placeholder="Create Password" required />
+        <div class="show-password">
+          <input type="checkbox" onclick="togglePasswordVisibility()"> Show Password
+        </div>
+
+        <input type="file" name="profile_image" accept="image/*" required />
+
+        <button type="submit">Register</button>
+      </form>
+
+      <div class="login-btn-wrapper">
+        <a href="index.html">Back to Login</a>
+      </div>
+    </div>
+
+    <div class="image-panel">
+      <h1>Welcome to QuickLearn</h1>
+      <p>Enroll in courses, manage your profile, and grow your knowledge.</p>
+      <img src="img/login.jpg" alt="Student Registration Illustration">
+    </div>
+  </div>
+
+  <script>
+    function togglePasswordVisibility() {
+      const pwd = document.getElementById("reg-password");
+      pwd.type = pwd.type === "password" ? "text" : "password";
+    }
+  </script>
+</body>
+</html>
